@@ -3,35 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nexus Gear</title>
+  <title>Nexus Gear - Sri Lanka's Premier Tech Store</title>
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f9f9f9;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      line-height: 1.6;
+      color: #333;
     }
 
     /* Navigation Bar */
     header {
-      background-color: #0d47a1;
-      color: white;
-      padding: 0.5rem 2rem;
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
     .navbar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 20px;
       flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: bold;
+      color: white;
+      flex-grow: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     }
 
     .menu-toggle {
@@ -39,92 +50,99 @@
       font-size: 1.8rem;
       cursor: pointer;
       color: white;
+      background: none;
+      border: none;
     }
 
     #nav-menu {
       list-style: none;
       display: flex;
-      align-items: center;
-      flex-wrap: wrap;
+      gap: 15px;
       margin: 0;
       padding: 0;
-      gap: 20px;
-      flex-grow: 1;
-    }
-
-    #nav-menu li {
-      position: relative;
     }
 
     #nav-menu li a {
       color: white;
       text-decoration: none;
-      padding: 8px 10px;
+      padding: 10px 15px;
       display: block;
-      transition: background 0.3s ease;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
     }
 
-    #nav-menu li a:hover {
-      background-color: #1565c0;
-      border-radius: 5px;
+    #nav-menu li a:hover,
+    #nav-menu li a.active {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .dropdown {
+      position: relative;
     }
 
     .dropdown-menu {
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #1565c0;
+      background: linear-gradient(135deg, #1565c0, #1976d2);
       display: none;
       flex-direction: column;
       padding: 0;
-      border-radius: 0 0 6px 6px;
-      min-width: 150px;
-      z-index: 1000;
+      border-radius: 0 0 10px 10px;
+      min-width: 180px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
 
     .dropdown:hover .dropdown-menu {
       display: flex;
     }
 
-    .dropdown-menu li a:hover {
-      background-color: #1976d2;
+    .dropdown-menu li a {
+      padding: 12px 20px;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* Search Box */
-    .search-box {
-      margin-left: auto;
+    .dropdown-menu li:last-child a {
+      border-bottom: none;
+      border-radius: 0 0 10px 10px;
     }
 
     .search-box input {
-      padding: 6px 12px;
+      padding: 10px 15px;
       border: none;
-      border-radius: 20px;
-      outline: none;
+      border-radius: 25px;
       font-size: 14px;
-      width: 180px;
-      transition: 0.3s ease;
+      width: 220px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      outline: none;
+      transition: all 0.3s ease;
     }
 
     .search-box input:focus {
-      width: 220px;
+      width: 250px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
 
-    /* Admin Button */
     .admin a {
-      background-color: #1e88e5;
-      border-radius: 5px;
-      padding: 8px 12px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 10px 15px;
+      backdrop-filter: blur(10px);
     }
 
     .admin a:hover {
-      background-color: #42a5f5;
+      background: rgba(255,255,255,0.3);
     }
 
     /* Hero Section */
     .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
       text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      padding: 100px 20px;
       position: relative;
       overflow: hidden;
     }
@@ -136,26 +154,29 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(13,71,161,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(13,71,161,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(13,71,161,0.1)"/><circle cx="60" cy="40" r="1" fill="rgba(13,71,161,0.1)"/></svg>');
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
       pointer-events: none;
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: #0d47a1;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease-out;
     }
 
     .hero p {
-      font-size: 1.2rem;
-      color: #333;
-      margin-bottom: 30px;
+      font-size: 1.3rem;
+      margin-bottom: 40px;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease-out 0.3s both;
     }
 
     .hero-buttons {
@@ -163,90 +184,118 @@
       justify-content: center;
       gap: 20px;
       flex-wrap: wrap;
+      animation: fadeInUp 1s ease-out 0.6s both;
     }
 
     .btn-hero {
-      padding: 12px 30px;
+      padding: 15px 35px;
       border: none;
-      border-radius: 25px;
-      font-size: 1rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     .btn-primary {
-      background-color: #0d47a1;
-      color: white;
+      background: white;
+      color: #0d47a1;
     }
 
     .btn-primary:hover {
-      background-color: #1565c0;
-      transform: translateY(-2px);
+      background: #f8f9fa;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
 
     .btn-secondary {
-      background-color: transparent;
-      color: #0d47a1;
-      border: 2px solid #0d47a1;
+      background: transparent;
+      color: white;
+      border: 2px solid white;
     }
 
     .btn-secondary:hover {
-      background-color: #0d47a1;
-      color: white;
-      transform: translateY(-2px);
+      background: white;
+      color: #0d47a1;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255,255,255,0.2);
     }
 
     /* Categories Section */
     .categories-horizontal {
-      padding: 40px 20px;
+      padding: 80px 20px;
+      background: white;
+    }
+
+    .categories-container {
+      max-width: 1200px;
+      margin: 0 auto;
       text-align: center;
-      background-color: #f8f9fa;
     }
 
     .categories-horizontal h2 {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       color: #0d47a1;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .categories-horizontal h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #0d47a1, #42a5f5);
+      border-radius: 2px;
     }
 
     .category-row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
     }
 
     .category-box {
       position: relative;
-      width: 250px;
-      height: 250px;
+      height: 300px;
       overflow: hidden;
-      border-radius: 10px;
+      border-radius: 20px;
       cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: all 0.4s ease;
       background: linear-gradient(135deg, #e3f2fd, #bbdefb);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .category-box:hover {
-      transform: translateY(-10px);
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
 
     .category-icon {
-      font-size: 4rem;
+      font-size: 5rem;
       margin-bottom: 20px;
       color: #0d47a1;
+      transition: all 0.3s ease;
+    }
+
+    .category-box:hover .category-icon {
+      transform: scale(1.1);
     }
 
     .category-box .overlay {
       position: absolute;
       bottom: 0;
-      background: rgba(13, 71, 161, 0.9);
+      background: linear-gradient(135deg, rgba(13, 71, 161, 0.95), rgba(21, 101, 192, 0.95));
       color: #fff;
       width: 100%;
       height: 100%;
@@ -254,8 +303,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.3s ease;
+      transition: all 0.4s ease;
       flex-direction: column;
+      backdrop-filter: blur(10px);
     }
 
     .category-box:hover .overlay {
@@ -263,21 +313,24 @@
     }
 
     .category-box .overlay span {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: bold;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
     }
 
     .category-count {
-      font-size: 0.9rem;
-      opacity: 0.8;
+      font-size: 1rem;
+      opacity: 0.9;
+      text-align: center;
+      padding: 0 20px;
     }
 
     /* Features Section */
     .features-section {
-      padding: 60px 20px;
-      background-color: white;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
     }
 
     .features-container {
@@ -287,83 +340,143 @@
     }
 
     .features-container h2 {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       color: #0d47a1;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .features-container h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #0d47a1, #42a5f5);
+      border-radius: 2px;
     }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
     }
 
     .feature-card {
-      background: #f8f9fa;
-      padding: 30px 20px;
-      border-radius: 15px;
-      transition: transform 0.3s ease;
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0d47a1, #1565c0, #42a5f5);
     }
 
     .feature-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
 
     .feature-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
+      font-size: 4rem;
+      margin-bottom: 25px;
       color: #0d47a1;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1);
     }
 
     .feature-card h3 {
-      color: #333;
-      margin-bottom: 15px;
+      color: #0d47a1;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
     }
 
     .feature-card p {
       color: #666;
-      line-height: 1.6;
+      line-height: 1.8;
     }
 
     /* Stats Section */
     .stats-section {
       background: linear-gradient(135deg, #0d47a1, #1565c0);
       color: white;
-      padding: 60px 20px;
+      padding: 80px 20px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stats-grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23stats-grain)"/></svg>');
+      pointer-events: none;
     }
 
     .stats-container {
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
+      gap: 40px;
     }
 
     .stat-card {
-      padding: 20px;
+      padding: 30px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
     }
 
     .stat-number {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: bold;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      background: linear-gradient(45deg, #ffffff, #e3f2fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .stat-label {
-      font-size: 1.1rem;
-      opacity: 0.9;
+      font-size: 1.2rem;
+      opacity: 0.95;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     /* Footer */
     .footer {
-      background-color: #0d47a1;
+      background: #1a1a1a;
       color: white;
-      padding: 40px 20px 20px;
+      padding: 60px 20px 30px;
       text-align: center;
     }
 
@@ -377,17 +490,37 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 30px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     .footer-links a {
-      color: white;
+      color: #ccc;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
+      padding: 5px 10px;
+      border-radius: 5px;
     }
 
     .footer-links a:hover {
-      color: #bbdefb;
+      color: #42a5f5;
+      background: rgba(66, 165, 245, 0.1);
+    }
+
+    .footer p {
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Responsive */
@@ -400,8 +533,11 @@
         display: none;
         width: 100%;
         flex-direction: column;
-        background-color: #0d47a1;
-        padding: 10px 0;
+        background: rgba(13, 71, 161, 0.95);
+        padding: 20px 0;
+        margin-top: 20px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
       }
 
       #nav-menu.active {
@@ -411,15 +547,20 @@
       .search-box {
         width: 100%;
         margin: 10px 0;
-        padding: 0 20px;
+        order: -1;
       }
 
       .search-box input {
         width: 100%;
+        max-width: none;
       }
 
       .hero h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
       }
 
       .hero-buttons {
@@ -428,16 +569,47 @@
       }
 
       .category-row {
-        justify-content: center;
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .category-box {
-        width: 200px;
-        height: 200px;
+        height: 250px;
       }
 
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .logo {
+        text-align: center;
+        flex-grow: 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero {
+        padding: 60px 20px;
+      }
+      
+      .categories-horizontal,
+      .features-section {
+        padding: 60px 20px;
       }
     }
   </style>
@@ -447,25 +619,23 @@
   <header>
     <div class="navbar">
       <div class="logo">Nexus Gear</div>
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
       <ul id="nav-menu">
         <li><a href="#" class="active">Home</a></li>
         <li class="dropdown">
-          <a href="http://localhost/Nexus_Gear---mobile-and-tech-retail-store/products.php">Products ▾</a>
+          <a href="products.php">Products ▾</a>
           <ul class="dropdown-menu">
-            <li><a href="http://localhost/Nexus_Gear---mobile-and-tech-retail-store/products.php">Phones</a></li>
+            <li><a href="products.php">Phones</a></li>
             <li><a href="products.php">Laptops</a></li>
-            <li><a href="products.php">Tabs</a></li>
+            <li><a href="products.php">Tablets</a></li>
             <li><a href="products.php">Accessories</a></li>
           </ul>
         </li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Join Us</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="join.html">Join-Us</a></li>
+        <li><a href="cart.php">Cart</a></li>
 
-        <!-- Search bar -->
-        <li class="search-box">
-          <input type="text" placeholder="🔍 Search products..." />
-        </li>
+        
 
         <!-- Admin Button -->
         <li class="admin"><a href="admin/adminLogin.html">Admin</a></li>
@@ -475,51 +645,53 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Welcome to Sri Lanka's Largest Mobile Shop</h1>
-      <p>EXPLORE TOP BRANDS AND LATEST TECH – ALL IN ONE PLACE!</p>
+      <h1>Welcome to Sri Lanka's Premier Tech Store</h1>
+      <p>DISCOVER TOP BRANDS AND CUTTING-EDGE TECHNOLOGY – ALL IN ONE PLACE!</p>
       <div class="hero-buttons">
-        <a href="products.html" class="btn-hero btn-primary">Shop Now</a>
+        <a href="products.php" class="btn-hero btn-primary">Shop Now</a>
         <a href="#categories" class="btn-hero btn-secondary">Browse Categories</a>
       </div>
     </div>
   </section>
 
   <section class="categories-horizontal" id="categories">
-    <h2>Product Categories</h2>
-    <div class="category-row">
+    <div class="categories-container">
+      <h2>Product Categories</h2>
+      <div class="category-row">
 
-      <div class="category-box" onclick="window.location.href='products.html'">
-        <div class="category-icon">📱</div>
-        <div class="overlay">
-          <span>Mobile Phones</span>
-          <div class="category-count">Latest smartphones & accessories</div>
+        <div class="category-box" onclick="window.location.href='products.php'">
+          <div class="category-icon">📱</div>
+          <div class="overlay">
+            <span>Mobile Phones</span>
+            <div class="category-count">Latest smartphones from top brands including Apple, Samsung, and more</div>
+          </div>
         </div>
-      </div>
 
-      <div class="category-box" onclick="window.location.href='products.html'">
-        <div class="category-icon">💻</div>
-        <div class="overlay">
-          <span>Laptops</span>
-          <div class="category-count">Professional & gaming laptops</div>
+        <div class="category-box" onclick="window.location.href='products.php'">
+          <div class="category-icon">💻</div>
+          <div class="overlay">
+            <span>Laptops</span>
+            <div class="category-count">Professional, gaming, and everyday laptops for all your computing needs</div>
+          </div>
         </div>
-      </div>
 
-      <div class="category-box" onclick="window.location.href='products.html'">
-        <div class="category-icon">📟</div>
-        <div class="overlay">
-          <span>Tablets</span>
-          <div class="category-count">iPads & Android tablets</div>
+        <div class="category-box" onclick="window.location.href='products.php'">
+          <div class="category-icon">📟</div>
+          <div class="overlay">
+            <span>Tablets</span>
+            <div class="category-count">iPads, Android tablets, and 2-in-1 devices for work and entertainment</div>
+          </div>
         </div>
-      </div>
 
-      <div class="category-box" onclick="window.location.href='products.html'">
-        <div class="category-icon">🎧</div>
-        <div class="overlay">
-          <span>Accessories</span>
-          <div class="category-count">Headphones, chargers & more</div>
+        <div class="category-box" onclick="window.location.href='products.php'">
+          <div class="category-icon">🎧</div>
+          <div class="overlay">
+            <span>Accessories</span>
+            <div class="category-count">Headphones, chargers, cases, and essential tech accessories</div>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </section>
 
@@ -529,23 +701,23 @@
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">🚚</div>
-          <h3>Fast Delivery</h3>
-          <p>Get your products delivered within 24 hours in Colombo and major cities across Sri Lanka.</p>
+          <h3>Lightning Fast Delivery</h3>
+          <p>Experience ultra-fast delivery within 24 hours in Colombo and express shipping to all major cities across Sri Lanka with real-time tracking.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🛡️</div>
-          <h3>Genuine Products</h3>
-          <p>All our products come with official warranties and are sourced directly from authorized dealers.</p>
+          <h3>100% Genuine Products</h3>
+          <p>Every product comes with official warranties and is sourced directly from authorized distributors, ensuring authenticity and quality you can trust.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">💳</div>
-          <h3>Easy Payment</h3>
-          <p>Multiple payment options including cash on delivery, card payments, and installment plans.</p>
+          <h3>Flexible Payment Options</h3>
+          <p>Choose from multiple payment methods including cash on delivery, secure online payments, and convenient installment plans to suit your budget.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔧</div>
-          <h3>Expert Support</h3>
-          <p>Our technical team provides after-sales support and repair services for all products.</p>
+          <h3>Expert Technical Support</h3>
+          <p>Our certified technical team provides comprehensive after-sales support, repair services, and product guidance whenever you need assistance.</p>
         </div>
       </div>
     </div>
@@ -560,7 +732,7 @@
         </div>
         <div class="stat-card">
           <div class="stat-number">1000+</div>
-          <div class="stat-label">Products Available</div>
+          <div class="stat-label">Quality Products</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">15+</div>
@@ -577,13 +749,28 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Contact Us</a>
-        <a href="#">Careers</a>
-        <a href="#">Help Center</a>
+        <a href="index.html">Home</a>
+        <a href="products.php">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.php">Cart</a>
       </div>
-      <p>&copy; 2024 Nexus Gear. All rights reserved. | Sri Lanka's Most Trusted Tech Store</p>
+      <p>&copy; 2025 Nexus Gear — Sri Lanka's Most Trusted Tech Store</p>
+      <p>Connecting you to the future, one device at a time</p><br>
+      <p>📍 Address:
+<p>Nexus Gear Pvt Ltd</p>
+<p></p>No. 45, Galle Road,</p>
+Colombo 03,
+Sri Lanka.
+ </p>
+ <p>
+📧 Email:
+ info@nexusgear.lk
+      </p>
+      <p>
+☎️ Phone:
+ +94 11 234 5678 /
+ +94 77 123 4567 (WhatsApp available) </p>
     </div>
   </footer>
 
@@ -606,7 +793,7 @@
       });
     });
 
-    // Add some interactive animations
+    // Enhanced animations with Intersection Observer
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -621,13 +808,78 @@
       });
     }, observerOptions);
 
-    // Observe feature cards for animation
-    document.querySelectorAll('.feature-card').forEach(card => {
+    // Observe elements for animation
+    document.querySelectorAll('.feature-card, .category-box, .stat-card').forEach(card => {
       card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
       observer.observe(card);
     });
+
+    // Add counter animation for stats
+    const animateCounters = () => {
+      const counters = document.querySelectorAll('.stat-number');
+      counters.forEach(counter => {
+        const target = counter.textContent;
+        const isPlus = target.includes('+');
+        const isSlash = target.includes('/');
+        let numericTarget;
+        
+        if (isSlash) {
+          numericTarget = target.split('/')[0];
+        } else {
+          numericTarget = parseInt(target.replace(/[^\d]/g, ''));
+        }
+        
+        let current = 0;
+        const increment = numericTarget / 100;
+        
+        const updateCounter = () => {
+          if (current < numericTarget) {
+            current += increment;
+            if (isSlash) {
+              counter.textContent = Math.ceil(current) + '/7';
+            } else {
+              counter.textContent = Math.ceil(current) + (isPlus ? 'K+' : '+');
+            }
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        
+        updateCounter();
+      });
+    };
+
+    // Trigger counter animation when stats section is visible
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      statsObserver.observe(statsSection);
+    }
+
+    // Add search functionality
+    const searchInput = document.querySelector('.search-box input');
+    if (searchInput) {
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const searchTerm = this.value.trim();
+          if (searchTerm) {
+            // Redirect to products page with search parameter
+            window.location.href = `products.php?search=${encodeURIComponent(searchTerm)}`;
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>

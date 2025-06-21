@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Nexus Gear | Sri Lanka's Premier Tech Store</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      line-height: 1.6;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      flex-grow: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    #nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    #nav-menu li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    #nav-menu li a:hover,
+    #nav-menu li a.active {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .search-box input {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 25px;
+      font-size: 14px;
+      width: 220px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-box input:focus {
+      width: 250px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-section h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-section p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .content-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .content-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0d47a1, #1565c0, #42a5f5);
+    }
+
+    .content-card h2 {
+      color: #0d47a1;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .content-card p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .highlight {
+      color: #0d47a1;
+      font-weight: 600;
+      background: linear-gradient(120deg, transparent 0%, rgba(13, 71, 161, 0.1) 50%, transparent 100%);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+
+    .feature-item {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .feature-item:hover {
+      border-color: #0d47a1;
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #0d47a1, #42a5f5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+      color: white;
+      box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
+    }
+
+    .feature-item h3 {
+      color: #0d47a1;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .feature-item p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 60px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #0d47a1, #42a5f5);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      width: 45%;
+      position: relative;
+    }
+
+    .timeline-year {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0d47a1;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      margin: 80px 0 0;
+      border-radius: 20px;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #0d47a1;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #42a5f5;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+      
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      .section-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .timeline::before {
+        left: 20px;
+      }
+      
+      .timeline-item {
+        flex-direction: row !important;
+        padding-left: 50px;
+      }
+      
+      .timeline-content {
+        width: 100%;
+      }
+      
+      .timeline-year {
+        left: 20px;
+        transform: none;
+      }
+      
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .search-box input {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">Nexus Gear</div>
+      <ul id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.php">Products</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.php">Cart</a></li>
+        <li class="search-box">
+          <input type="text" placeholder="🔍 Search products..." />
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>About Nexus Gear</h1>
+      <p>Sri Lanka's most trusted technology destination, connecting you to the future since 2010</p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-number">50K+</span>
+          <span class="stat-label">Happy Customers</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">1000+</span>
+          <span class="stat-label">Quality Products</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Customer Support</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="section-grid">
+        <div class="content-card">
+          <h2>
+            <div class="card-icon">🎯</div>
+            Our Mission
+          </h2>
+          <p>
+            At <span class="highlight">Nexus Gear</span>, our mission is to democratize technology access across Sri Lanka. We believe that everyone deserves access to the latest innovations, from cutting-edge smartphones to powerful laptops and essential accessories.
+          </p>
+          <p>
+            We're committed to bridging the digital divide by offering <span class="highlight">genuine products at competitive prices</span>, backed by exceptional customer service and reliable support.
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h2>
+            <div class="card-icon">🏆</div>
+            Our Story
+          </h2>
+          <p>
+            Founded in 2010 as a small electronics store in Colombo, <span class="highlight">Nexus Gear</span> has grown to become Sri Lanka's largest mobile and electronics retailer. Our journey began with a simple vision: to make technology accessible to everyone.
+          </p>
+          <p>
+            Today, we serve customers across the island with our comprehensive online platform, multiple retail locations, and <span class="highlight">island-wide delivery network</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>The Beginning</h3>
+            <p>Started as a small electronics store in Colombo with a vision to make technology accessible to all Sri Lankans.</p>
+          </div>
+          <div class="timeline-year">2010</div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Digital Expansion</h3>
+            <p>Launched our online platform and expanded to serve customers across Sri Lanka with reliable delivery services.</p>
+          </div>
+          <div class="timeline-year">2015</div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Market Leader</h3>
+            <p>Became Sri Lanka's largest mobile and electronics retailer, serving over 50,000 satisfied customers.</p>
+          </div>
+          <div class="timeline-year">2020</div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Innovation Focus</h3>
+            <p>Continuing to innovate with enhanced customer experience, faster delivery, and expanded product range.</p>
+          </div>
+          <div class="timeline-year">2025</div>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🛡️</div>
+          <h3>Genuine Products</h3>
+          <p>All our products come with official warranties and are sourced directly from authorized distributors and manufacturers.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">🚚</div>
+          <h3>Fast Delivery</h3>
+          <p>24-hour delivery in Colombo and express delivery island-wide. We ensure your tech reaches you quickly and safely.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">💬</div>
+          <h3>Expert Support</h3>
+          <p>Our knowledgeable team provides technical advice, product recommendations, and after-sales support whenever you need it.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">💳</div>
+          <h3>Flexible Payment</h3>
+          <p>Multiple payment options including cash on delivery, online banking, and installment plans to suit your needs.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">🌟</div>
+          <h3>Customer First</h3>
+          <p>Your satisfaction is our priority. We go above and beyond to ensure every customer has an exceptional experience.</p>
+        </div>
+        
+        <div class="feature-item">
+          <div class="feature-icon">🔄</div>
+          <h3>Easy Returns</h3>
+          <p>Hassle-free return and exchange policy. If you're not satisfied, we'll make it right within 7 days of purchase.</p>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to Upgrade Your Tech?</h2>
+        <p>Join thousands of satisfied customers who trust Nexus Gear for their technology needs</p>
+        <div class="cta-buttons">
+          <a href="products.php" class="btn btn-primary">Shop Now</a>
+          <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="products.php">Products</a>
+        <a href="about.html">About Us</a>
+        <a href="join.html">Join-Us</a>
+        <a href="cart.php">Cart</a>
+      </div>
+      <p>&copy; 2025 Nexus Gear — Sri Lanka's Most Trusted Tech Store</p>
+      <p>Connecting you to the future, one device at a time</p> <br>
+      <p>📍 Address:
+<p>Nexus Gear Pvt Ltd</p>
+<p></p>No. 45, Galle Road,</p>
+Colombo 03,
+Sri Lanka.
+ </p>
+ <p>
+📧 Email:
+ info@nexusgear.lk
+      </p>
+      <p>
+☎️ Phone:
+ +94 11 234 5678 /
+ +94 77 123 4567 (WhatsApp available) </p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Us - Nexus Gear | Build Your Career in Tech</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      line-height: 1.6;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      flex-grow: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    #nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    #nav-menu li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    #nav-menu li a:hover,
+    #nav-menu li a.active {
+      background-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .search-box input {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 25px;
+      font-size: 14px;
+      width: 220px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .search-box input:focus {
+      width: 250px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-section h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-section p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .content-section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .content-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0d47a1, #1565c0, #42a5f5);
+    }
+
+    .content-card h2 {
+      color: #0d47a1;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .content-card p {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .highlight {
+      color: #0d47a1;
+      font-weight: 600;
+      background: linear-gradient(120deg, transparent 0%, rgba(13, 71, 161, 0.1) 50%, transparent 100%);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 60px 0;
+    }
+
+    .benefit-item {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .benefit-item:hover {
+      border-color: #0d47a1;
+      transform: translateY(-5px);
+    }
+
+    .benefit-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #0d47a1, #42a5f5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.8rem;
+      color: white;
+      box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
+    }
+
+    .benefit-item h3 {
+      color: #0d47a1;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .benefit-item p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .jobs-section {
+      background: white;
+      padding: 60px 0;
+      margin: 80px 0;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      text-align: center;
+      color: #0d47a1;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1.2rem;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .job-card {
+      background: white;
+      border: 2px solid #f0f0f0;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .job-card:hover {
+      border-color: #0d47a1;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .job-title {
+      color: #0d47a1;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .job-department {
+      color: #666;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .job-type {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .job-description {
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .job-requirements {
+      margin-bottom: 25px;
+    }
+
+    .job-requirements h4 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .job-requirements ul {
+      color: #666;
+      padding-left: 20px;
+    }
+
+    .job-requirements li {
+      margin-bottom: 5px;
+    }
+
+    .apply-btn {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .apply-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(13, 71, 161, 0.3);
+    }
+
+    .application-section {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 60px 0;
+      margin: 80px 0;
+      border-radius: 20px;
+    }
+
+    .application-form {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #0d47a1;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(13, 71, 161, 0.3);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      margin: 80px 0 0;
+      border-radius: 20px;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #0d47a1;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #42a5f5;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+      
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      .section-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .search-box input {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .application-form {
+        margin: 0 20px;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">Nexus Gear</div>
+      <ul id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.php">Products</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="join-us.html" class="active">Join Us</a></li>
+        <li><a href="cart.php">Cart</a></li>
+        <li class="search-box">
+          <input type="text" placeholder="🔍 Search products..." />
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Join Our Team</h1>
+      <p>Build your career with Sri Lanka's most innovative technology company</p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-number">150+</span>
+          <span class="stat-label">Team Members</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Departments</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">95%</span>
+          <span class="stat-label">Employee Satisfaction</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Growth Opportunities</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="section-grid">
+        <div class="content-card">
+          <h2>
+            <div class="card-icon">🚀</div>
+            Why Choose Nexus Gear?
+          </h2>
+          <p>
+            At <span class="highlight">Nexus Gear</span>, we're not just selling technology – we're shaping the future of Sri Lanka's digital landscape. Join a team that's passionate about innovation, customer excellence, and making a real impact in people's lives.
+          </p>
+          <p>
+            We offer <span class="highlight">competitive packages, growth opportunities</span>, and a dynamic work environment where your ideas matter and your career can flourish.
+          </p>
+        </div>
+
+        <div class="content-card">
+          <h2>
+            <div class="card-icon">🎯</div>
+            Our Culture
+          </h2>
+          <p>
+            We believe in fostering a culture of <span class="highlight">collaboration, innovation, and continuous learning</span>. Our team is our greatest asset, and we invest in creating an environment where everyone can thrive.
+          </p>
+          <p>
+            From flexible working arrangements to professional development programs, we ensure our team members have everything they need to <span class="highlight">achieve their career goals</span>.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">💰</div>
+          <h3>Competitive Salary</h3>
+          <p>Attractive salary packages with performance bonuses and annual increments based on merit and contribution.</p>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">🏥</div>
+          <h3>Health Benefits</h3>
+          <p>Comprehensive health insurance coverage for you and your family, including medical, dental, and vision care.</p>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">📚</div>
+          <h3>Learning & Development</h3>
+          <p>Continuous learning opportunities, training programs, certifications, and conference attendance support.</p>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">⏰</div>
+          <h3>Work-Life Balance</h3>
+          <p>Flexible working hours, remote work options, and generous leave policies to maintain healthy work-life balance.</p>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">🌟</div>
+          <h3>Career Growth</h3>
+          <p>Clear career progression paths, mentorship programs, and leadership development opportunities.</p>
+        </div>
+        
+        <div class="benefit-item">
+          <div class="benefit-icon">🎉</div>
+          <h3>Team Culture</h3>
+          <p>Fun team events, employee recognition programs, and a supportive, inclusive workplace environment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="jobs-section">
+    <div class="container">
+      <h2 class="section-title">Current Openings</h2>
+      <p class="section-subtitle">Join our growing team and help shape the future of technology retail in Sri Lanka</p>
+      
+      <div class="job-card">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Senior Sales Executive</div>
+            <div class="job-department">Sales & Customer Service</div>
+          </div>
+          <div class="job-type">Full-Time</div>
+        </div>
+        <div class="job-description">
+          Lead our sales team in delivering exceptional customer experiences and driving revenue growth. Perfect for experienced sales professionals who want to make an impact in the tech industry.
+        </div>
+        <div class="job-requirements">
+          <h4>Requirements:</h4>
+          <ul>
+            <li>3+ years of sales experience, preferably in technology/electronics</li>
+            <li>Strong communication skills in English and Sinhala/Tamil</li>
+            <li>Proven track record of meeting sales targets</li>
+            <li>Leadership experience and team management skills</li>
+          </ul>
+        </div>
+        <button class="apply-btn" onclick="scrollToApplication()">Apply Now</button>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Digital Marketing Specialist</div>
+            <div class="job-department">Marketing & Communications</div>
+          </div>
+          <div class="job-type">Full-Time</div>
+        </div>
+        <div class="job-description">
+          Drive our digital presence and create engaging campaigns that connect with tech enthusiasts across Sri Lanka. Join our marketing team and help build our brand.
+        </div>
+        <div class="job-requirements">
+          <h4>Requirements:</h4>
+          <ul>
+            <li>2+ years experience in digital marketing</li>
+            <li>Proficiency in social media platforms and advertising tools</li>
+            <li>Knowledge of SEO, Google Analytics, and content management</li>
+            <li>Creative mindset with strong analytical skills</li>
+          </ul>
+        </div>
+        <button class="apply-btn" onclick="scrollToApplication()">Apply Now</button>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Technical Support Engineer</div>
+            <div class="job-department">Technical Support</div>
+          </div>
+          <div class="job-type">Full-Time</div>
+        </div>
+        <div class="job-description">
+          Provide expert technical support to our customers and help them get the most out of their technology purchases. Great opportunity for tech-savvy individuals.
+        </div>
+        <div class="job-requirements">
+          <h4>Requirements:</h4>
+          <ul>
+            <li>Diploma/Degree in IT, Electronics, or related field</li>
+            <li>Strong troubleshooting and problem-solving skills</li>
+            <li>Experience with mobile devices, laptops, and accessories</li>
+            <li>Excellent customer service and communication skills</li>
+          </ul>
+        </div>
+        <button class="apply-btn" onclick="scrollToApplication()">Apply Now</button>
+      </div>
+
+      <div class="job-card">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Warehouse Operations Manager</div>
+            <div class="job-department">Operations & Logistics</div>
+          </div>
+          <div class="job-type">Full-Time</div>
+        </div>
+        <div class="job-description">
+          Oversee our warehouse operations and ensure efficient inventory management and order fulfillment. Perfect for operations professionals who want to optimize logistics.
+        </div>
+        <div class="job-requirements">
+          <h4>Requirements:</h4>
+          <ul>
+            <li>3+ years experience in warehouse/logistics management</li>
+            <li>Knowledge of inventory management systems</li>
+            <li>Strong organizational and leadership skills</li>
+            <li>Experience with e-commerce fulfillment preferred</li>
+          </ul>
+        </div>
+        <button class="apply-btn" onclick="scrollToApplication()">Apply Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="application-section">
+    <div class="container">
+      <h2 class="section-title">Apply Today</h2>
+      <p class="section-subtitle">Ready to join the Nexus Gear family? Submit your application and let's start the conversation.</p>
+      
+      <form class="application-form" id="applicationForm">
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" name="fullName" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="position">Position Applying For *</label>
+          <select id="position" name="position" required>
+            <option value="">Select a position</option>
+            <option value="senior-sales-executive">Senior Sales Executive</option>
+            <option value="digital-marketing-specialist">Digital Marketing Specialist</option>
+            <option value="technical-support-engineer">Technical Support Engineer</option>
+            <option value="warehouse-operations-manager">Warehouse Operations Manager</option>
+            <option value="other">Other (specify in message)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="experience">Years of Experience</label>
+          <select id="experience" name="experience">
+            <option value="">Select experience level</option>
+            <option value="0-1">0-1 years (Entry Level)</option>
+            <option value="2-3">2-3 years</option>
+            <option value="4-5">4-5 years</option>
+            <option value="6-10">6-10 years</option>
+            <option value="10+">10+ years (Senior Level)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Cover Letter / Additional Information</label>
+          <textarea id="message" name="message" placeholder="Tell us why you want to join Nexus Gear and what makes you the perfect fit for this role..."></textarea>
+        </div>
+        
+        <button type="submit" class="submit-btn">Submit Application</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="cta-section">
+    <div class="container">
+      <h2>Ready to Start Your Journey?</h2>
+      <p>Join Sri Lanka's leading technology company and build the career you've always dreamed of</p>
+      <div class="cta-buttons">
+        <a href="#applicationForm" class="btn btn-primary">Apply Now</a>
+      </div>
+    </div>
+  </div
