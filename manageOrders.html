@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Orders</title>
+  <link rel="stylesheet" href="" />
+  <script defer src=></script>
+</head>
+<body>
+  <header class="admin-header">
+    <h1>Manage Orders</h1>
+  </header>
+
+  <nav class="admin-nav">
+    <ul>
+      <li><a href="admin.html">Dashboard</a></li>
+      <li><a href="addProduct.html">Add Product</a></li>
+      <li><a href="manageCategories.html">Manage Categories</a></li>
+      <li><a href="manageOrders.html">Orders</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main class="admin-main">
+    <h2>Order List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Customer</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="order-list">
+        <tr><td colspan="5">Loading...</td></tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexus Gear</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* Navigation Bar */
+    header {
+      background-color: #0d47a1;
+      color: white;
+      padding: 0.5rem 2rem;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    #nav-menu {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+      flex-grow: 1;
+    }
+
+    #nav-menu li {
+      position: relative;
+    }
+
+    #nav-menu li a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 10px;
+      display: block;
+      transition: background 0.3s ease;
+    }
+
+    #nav-menu li a:hover {
+      background-color: #1565c0;
+      border-radius: 5px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #1565c0;
+      display: none;
+      flex-direction: column;
+      padding: 0;
+      border-radius: 0 0 6px 6px;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: #1976d2;
+    }
+
+    /* Search Box */
+    .search-box {
+      margin-left: auto;
+    }
+
+    .search-box input {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      font-size: 14px;
+      width: 180px;
+      transition: 0.3s ease;
+    }
+
+    .search-box input:focus {
+      width: 220px;
+    }
+
+    /* Admin Button */
+    .admin a {
+      background-color: #1e88e5;
+      border-radius: 5px;
+      padding: 8px 12px;
+    }
+
+    .admin a:hover {
+      background-color: #42a5f5;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(13,71,161,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(13,71,161,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(13,71,161,0.1)"/><circle cx="60" cy="40" r="1" fill="rgba(13,71,161,0.1)"/></svg>');
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #0d47a1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background-color: #0d47a1;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #1565c0;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #0d47a1;
+      border: 2px solid #0d47a1;
+    }
+
+    .btn-secondary:hover {
+      background-color: #0d47a1;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Categories Section */
+    .categories-horizontal {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #f8f9fa;
+    }
+
+    .categories-horizontal h2 {
+      font-size: 2.2rem;
+      color: #0d47a1;
+      margin-bottom: 50px;
+    }
+
+    .category-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .category-box {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .category-box:hover {
+      transform: translateY(-10px);
+    }
+
+    .category-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      color: #0d47a1;
+    }
+
+    .category-box .overlay {
+      position: absolute;
+      bottom: 0;
+      background: rgba(13, 71, 161, 0.9);
+      color: #fff;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+      flex-direction: column;
+    }
+
+    .category-box:hover .overlay {
+      opacity: 1;
+    }
+
+    .category-box .overlay span {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .category-count {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 60px 20px;
+      background-color: white;
+    }
+
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .features-container h2 {
+      font-size: 2.2rem;
+      color: #0d47a1;
+      margin-bottom: 50px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: #f8f9fa;
+      padding: 30px 20px;
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #0d47a1;
+    }
+
+    .feature-card h3 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, #0d47a1, #1565c0);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .stat-card {
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #0d47a1;
+      color: white;
+      padding: 40px 20px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #bbdefb;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      #nav-menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background-color: #0d47a1;
+        padding: 10px 0;
+      }
+
+      #nav-menu.active {
+        display: flex;
+      }
+
+      .search-box {
+        width: 100%;
+        margin: 10px 0;
+        padding: 0 20px;
+      }
+
+      .search-box input {
+        width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .category-row {
+        justify-content: center;
+      }
+
+      .category-box {
+        width: 200px;
+        height: 200px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">Nexus Gear</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-menu">
+        <li><a href="#" class="active">Home</a></li>
+        <li class="dropdown">
+          <a href="products.php">Products ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="products.php">Phones</a></li>
+            <li><a href="products.php">Laptops</a></li>
+            <li><a href="products.php">Tabs</a></li>
+            <li><a href="products.php">Accessories</a></li>
+          </ul>
+        </li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Join Us</a></li>
+
+        <!-- Search bar -->
+        <li class="search-box">
+          <input type="text" placeholder="🔍 Search products..." />
+        </li>
+
+        <!-- Admin Button -->
+        <li class="admin"><a href="admin/adminLogin.html">Admin</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Sri Lanka's Largest Mobile Shop</h1>
+      <p>EXPLORE TOP BRANDS AND LATEST TECH – ALL IN ONE PLACE!</p>
+      <div class="hero-buttons">
+        <a href="products.html" class="btn-hero btn-primary">Shop Now</a>
+        <a href="#categories" class="btn-hero btn-secondary">Browse Categories</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories-horizontal" id="categories">
+    <h2>Product Categories</h2>
+    <div class="category-row">
+
+      <div class="category-box" onclick="window.location.href='products.html'">
+        <div class="category-icon">📱</div>
+        <div class="overlay">
+          <span>Mobile Phones</span>
+          <div class="category-count">Latest smartphones & accessories</div>
+        </div>
+      </div>
+
+      <div class="category-box" onclick="window.location.href='products.html'">
+        <div class="category-icon">💻</div>
+        <div class="overlay">
+          <span>Laptops</span>
+          <div class="category-count">Professional & gaming laptops</div>
+        </div>
+      </div>
+
+      <div class="category-box" onclick="window.location.href='products.html'">
+        <div class="category-icon">📟</div>
+        <div class="overlay">
+          <span>Tablets</span>
+          <div class="category-count">iPads & Android tablets</div>
+        </div>
+      </div>
+
+      <div class="category-box" onclick="window.location.href='products.html'">
+        <div class="category-icon">🎧</div>
+        <div class="overlay">
+          <span>Accessories</span>
+          <div class="category-count">Headphones, chargers & more</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="features-section">
+    <div class="features-container">
+      <h2>Why Choose Nexus Gear?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🚚</div>
+          <h3>Fast Delivery</h3>
+          <p>Get your products delivered within 24 hours in Colombo and major cities across Sri Lanka.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Genuine Products</h3>
+          <p>All our products come with official warranties and are sourced directly from authorized dealers.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💳</div>
+          <h3>Easy Payment</h3>
+          <p>Multiple payment options including cash on delivery, card payments, and installment plans.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>Expert Support</h3>
+          <p>Our technical team provides after-sales support and repair services for all products.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">50K+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">Products Available</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">24/7</div>
+          <div class="stat-label">Customer Support</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Help Center</a>
+      </div>
+      <p>&copy; 2024 Nexus Gear. All rights reserved. | Sri Lanka's Most Trusted Tech Store</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const navMenu = document.getElementById('nav-menu');
+      navMenu.classList.toggle('active');
+    }
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add some interactive animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe feature cards for animation
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>

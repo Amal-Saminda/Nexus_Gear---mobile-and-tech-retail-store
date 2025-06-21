@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product - Nexus Gear</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Updated Admin Style Navbar */
+    .navbar {
+      background-color: #007BFF; /* Blue like your admin panel */
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .navbar h1 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      background-color: #0056b3;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Updated Admin-Style Navbar -->
+  <div class="navbar">
+    <h1>Nexus Gear Admin</h1>
+    <ul>
+      <li><a href="admin.html">Dashboard</a></li>
+      <li><a href="testAdd.html">Add Product</a></li>
+      <li><a href="#">Orders</a></li>
+      <li><a href="#">Categories</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Product Form -->
+  <div class="container">
+    <h2>➕ Add New Product</h2>
+
+    <form action="testAddImage.php" method="POST" enctype="multipart/form-data">
+      <label for="name">📱 Product Name:</label>
+      <input type="text" name="name" id="name" required>
+
+      <label for="category">📂 Category:</label>
+      <select name="category" id="category" required>
+        <option value="">-- Select Category --</option>
+        <option value="Phones">Phones</option>
+        <option value="Laptops">Laptops</option>
+        <option value="Tablets">Tablets</option>
+        <option value="Accessories">Accessories</option>
+        <option value="Smart Watches">Smart Watches</option>
+      </select>
+
+      <label for="price">💵 Price (LKR):</label>
+      <input type="number" name="price" id="price" required>
+
+      <label for="description">📝 Description:</label>
+      <textarea name="description" id="description" rows="4"></textarea>
+
+      <label for="image">📸 Product Image:</label>
+      <input type="file" name="image" id="image" accept="image/*" required>
+
+      <button type="submit">✅ Add Product</button>
+    </form>
+  </div>
+
+</body>
+</html>

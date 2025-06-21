@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manage Categories</title>
+  <link rel="stylesheet" href="css/manageCategories.css" />
+
+</head>
+<body>
+  <h1>Manage Categories</h1>
+
+  <!-- Add Category Form -->
+  <form action="addCategory.php" method="POST">
+    <input type="text" name="category_name" placeholder="Enter new category" required>
+    <button type="submit">Add Category</button>
+  </form>
+
+  <hr>
+
+  <!-- Category List -->
+  <h2> All Categories</h2>
+  <ul id="category-list"></ul>
+
+  <script src="manageCategories.js"></script>
+</body>
+</html>
