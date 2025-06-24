@@ -102,13 +102,13 @@
   <div class="container">
     <h2>➕ Add New Product</h2>
 
-    <form action="testAddImage.php" method="POST" enctype="multipart/form-data">
+    <form action="http://localhost/Nexus_Gear--mobile-and-tech-retail-store/testAddImage.php" method="POST" enctype="multipart/form-data">
       <label for="name">📱 Product Name:</label>
       <input type="text" name="name" id="name" required>
 
       <label for="category">📂 Category:</label>
       <select name="category" id="category" required>
-        <option value="">-- Select Category --</option>
+        <option value="" disabled selected>-- Select Category --</option>
         <option value="Phones">Phones</option>
         <option value="Laptops">Laptops</option>
         <option value="Tablets">Tablets</option>
@@ -122,8 +122,6 @@
       <label for="description">📝 Description:</label>
       <textarea name="description" id="description" rows="4"></textarea>
 
-      <label for="image">📸 Product Image:</label>
-      <input type="file" name="image" id="image" accept="image/*" required>
 
       <button type="submit">✅ Add Product</button>
     </form>

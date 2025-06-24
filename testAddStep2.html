@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Product - Nexus Gear</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px;
+      max-width: 600px;
+      margin: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #0d47a1;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    input[type="file"] {
+      margin-top: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Add New Product</h2>
+    <form action="testAddImage.php" method="POST" enctype="multipart/form-data">
+      <label for="name">Product Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="category">Category:</label>
+      <select name="category" id="category" required>
+        <option value="">-- Select Category --</option>
+        <option value="Phones">Phones</option>
+        <option value="Laptops">Laptops</option>
+        <option value="Tablets">Tablets</option>
+        <option value="Accessories">Accessories</option>
+        <option value="Smart Watches">Smart Watches</option>
+      </select>
+
+      <label for="price">Price (LKR):</label>
+      <input type="number" id="price" name="price" required>
+
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" rows="4" required></textarea>
+
+      <label for="image">Product Image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+
+      <button type="submit">Add Product</button>
+    </form>
+  </div>
+</body>
+</html>
